@@ -1,7 +1,7 @@
 # Automatic-Mister
 By Anthony Brogni
 
-This is my second project that I chose to make a GitHub repo for. 
+This is my Automatic Mister project.
 I made the first prototype of this project about a year ago, but I was unsatisfied and decided to go back and recreate it.
 This project is a software-controlled automatic mister that can be used to keep plants and pets hydrated while you're away from home.
 When you first plug it in you are prompted to configure your system, and the after that you're good to go!
