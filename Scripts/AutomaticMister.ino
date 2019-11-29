@@ -1,4 +1,4 @@
-//Automatic Mister
+//Automatic Sprayer
 //By Anthony Brogni
 
 #include <Elegoo_GFX.h>    // Core graphics library
@@ -129,7 +129,7 @@ void boot()
   tft.setCursor(35, 0);
   tft.setTextColor(WHITE);
   tft.setTextSize(2);
-  tft.println("Automatic Mister v2.5");
+  tft.println("Automatic Sprayer v2.5");
   tft.setCursor(110, 200);
   tft.println("Made by");
   tft.setCursor(70, 220);
