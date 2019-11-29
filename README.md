@@ -1,9 +1,9 @@
-# Automatic-Mister
+# Automatic Sprayer
 By Anthony Brogni
 
-This is my Automatic Mister project.
+This is my Automatic Sprayer project.
 I made the first prototype of this project about a year ago, but I was unsatisfied and decided to go back and recreate it.
-This project is a software-controlled automatic mister that can be used to keep plants and pets hydrated while you're away from home.
+This project is a software-controlled automatic sprayer that can be used to keep plants and pets hydrated while you're away from home.
 When you first plug it in you are prompted to configure your system, and the after that you're good to go!
 Some nice built-in features are spray schedule and spray time control, count-down clock until next spray, and a manual spray button.
 
