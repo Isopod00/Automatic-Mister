@@ -7,17 +7,6 @@ This project is a software-controlled automatic sprayer that can be used to keep
 When you first plug it in you are prompted to configure your system, and the after that you're good to go!
 Some nice built-in features are spray schedule and spray time control, count-down clock until next spray, and a manual spray button.
 
-Parts Used:
--3D Printed Case
--3D Printed Case Cover
--3D Printed Sprayer Stand
--Arduino Mega
--2.8" tft lcd Shield
--Relay Module
--Two 1.5v Rechargeable Batteries
--Rechargeable Battery Case
--Motorized Spray Bottle
--Lots of Wire
+Parts Used: 3D Printed Electronics Case, 3D Printed Sprayer Stand, Arduino Mega, 2.8" tft lcd Shield, Relay Module, One 1.5v Rechargeable Battery, Battery Case, Motorized Spray Bottle, Lots of Wire
 
-Code Used:
--All of the code is in a single .ino script that is run by the Arduino Mega 
+Code Used: All of the code is in a single .ino script that is run by the Arduino Mega 
