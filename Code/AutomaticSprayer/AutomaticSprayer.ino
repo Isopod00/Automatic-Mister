@@ -125,16 +125,18 @@ void loop()
 void boot()
 {
   tft.fillScreen(BLUE);
-  tft.setRotation(0);
-  tft.setCursor(35, 0);
+  tft.setRotation(2);
+  tft.setCursor(20, 0);
   tft.setTextColor(WHITE);
   tft.setTextSize(2);
-  tft.println("Automatic Sprayer v2.5");
-  tft.setCursor(110, 200);
+  tft.println("Automatic Sprayer");
+  tft.setCursor(100, 20);
+  tft.println("v2.5");
+  tft.setCursor(80, 280);
   tft.println("Made by");
-  tft.setCursor(70, 220);
+  tft.setCursor(40, 300);
   tft.println("Anthony Brogni");
-  tft.setCursor(60, 100);
+  tft.setCursor(30, 140);
   tft.setTextSize(4);
   tft.println("Welcome!");
   delay(4000);
@@ -143,37 +145,39 @@ void boot()
 
 void configSystem()
 {
-  tft.setCursor(45, 60);
+  tft.setCursor(25, 60);
   tft.setTextColor(WHITE);
   tft.setTextSize(3);
-  tft.println("Please take a");
+  tft.println("Please take");
   tft.setCursor(10, 85);
-  tft.println("moment to help us");
+  tft.println("a moment to");
   tft.setCursor(30, 110);
-  tft.println("configure your");
-  tft.setCursor(90, 135);
-  tft.println("system!");
+  tft.println("configure");
+  tft.setCursor(20, 135);
+  tft.println("your system!");
   delay(4000);
   tft.fillScreen(BLUE);
-  tft.setCursor(0, 0);
+  tft.setCursor(20, 0);
   tft.setTextColor(WHITE);
   tft.setTextSize(2);
-  tft.println("The default spray interval");
-  tft.setCursor(40, 20);
-  tft.println("is every eight hours");
-  tft.setCursor(5, 60);
-  tft.println("Would you like it to stay");
-  tft.setCursor(90, 80);
-  tft.println("that way?");
+  tft.println("The default spray");
+  tft.setCursor(15, 20);
+  tft.println("interval is every");
+  tft.setCursor(60, 40);
+  tft.println("eight hours");
+  tft.setCursor(20, 100);
+  tft.println("Would you like it");
+  tft.setCursor(20, 120);
+  tft.println("to stay that way?");
   tft.fillRect(50, 150, 80, 50, BLACK);
   tft.drawRect(50, 150, 80, 50, WHITE);
-  tft.setCursor(55, 158);
+  tft.setCursor(25, 220);
   tft.setTextColor(WHITE);
   tft.setTextSize(4);
   tft.print("Yes");
   tft.fillRect(180, 150, 80, 50, BLACK);
   tft.drawRect(180, 150, 80, 50, WHITE);
-  tft.setCursor(200, 158);
+  tft.setCursor(170, 220);
   tft.setTextColor(WHITE);
   tft.setTextSize(4);
   tft.print("NO");
@@ -470,21 +474,24 @@ void endConfig()
   {
     wait = assignedWait;
   }
-  tft.setCursor(25, 110);
+  tft.setCursor(35, 110);
   tft.setTextColor(WHITE);
   tft.setTextSize(2);
-  tft.println("Configuration Complete!");
+  tft.println("Configuration");
+  tft.setCursor(60, 110);
+  tft.println("Complete!");
   delay(4000);
   tft.fillScreen(BLUE);
   if (answered2 == true)
   {
     hours = assignedHours;
   }
-  tft.setRotation(1);
+  tft.setRotation(2);
   tft.setTextColor(WHITE);
-  tft.setCursor(30, 0);
+  tft.setCursor(0, 0);
   tft.setTextSize(2);
-  tft.print("Time Until Next Spray: ");
+  tft.print("Time Until Next ");
+  tft.print("Spray: ");
   tft.setTextSize(2);
   tft.setCursor(85, 16);
   tft.print(hours);
@@ -494,13 +501,13 @@ void endConfig()
   tft.print(seconds);
   tft.fillRect(75, 85, 150, 50, BLACK);
   tft.drawRect(75, 85, 150, 50, WHITE);
-  tft.setCursor(90, 95);
+  tft.setCursor(45, 95);
   tft.setTextColor(WHITE);
   tft.setTextSize(4);
   tft.print("Spray");
   tft.fillRect(45, 200, 225, 35, BLACK);
   tft.drawRect(45, 200, 225, 35, WHITE);
-  tft.setCursor(50, 210);
+  tft.setCursor(10, 210);
   tft.setTextColor(WHITE);
   tft.setTextSize(2);
   tft.print("Reconfigure System");
