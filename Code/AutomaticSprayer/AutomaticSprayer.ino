@@ -5,28 +5,13 @@
 #include <Elegoo_TFTLCD.h> // Hardware-specific library
 #include <TouchScreen.h>
 
-// The control pins for the LCD can be assigned to any digital or
-// analog pins...but we'll use the analog pins as this allows us to
-// double up the pins with the touch screen (see the TFT paint example).
+// The control pins for the LCD can be assigned to any digital or analog pins, but using the analog pins allows for doubling up the pins with the touch screen (see the TFT paint example).
 #define LCD_CS A3 // Chip Select goes to Analog 3
 #define LCD_CD A2 // Command/Data goes to Analog 2
 #define LCD_WR A1 // LCD Write goes to Analog 1
 #define LCD_RD A0 // LCD Read goes to Analog 0
 
 #define LCD_RESET A4 // Can alternately just connect to Arduino's reset pin
-
-// When using the BREAKOUT BOARD only, use these 8 data lines to the LCD:
-// For the Arduino Uno, Duemilanove, Diecimila, etc.:
-//   D0 connects to digital pin 8  (Notice these are
-//   D1 connects to digital pin 9   NOT in order!)
-//   D2 connects to digital pin 2
-//   D3 connects to digital pin 3
-//   D4 connects to digital pin 4
-//   D5 connects to digital pin 5
-//   D6 connects to digital pin 6
-//   D7 connects to digital pin 7
-// For the Arduino Mega, use digital pins 22 through 29
-// (on the 2-row header at the end of the board).
 
 #define YP A2  // must be an analog pin, use "An" notation!
 #define XM A3  // must be an analog pin, use "An" notation!
@@ -50,9 +35,7 @@
 
 Elegoo_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET);
 TouchScreen ts = TouchScreen(XP, YP, XM, YM, 300);
-// If using the shield, all control and data lines are fixed, and
-// a simpler declaration can optionally be used:
-// Elegoo_TFTLCD tft;
+// If using the shield, all control and data lines are fixed, and a simpler declaration can optionally be used: Elegoo_TFTLCD tft;
 
 int hours = 8;
 int minutes = 0;
@@ -145,26 +128,24 @@ void boot()
 
 void configSystem()
 {
-  tft.setCursor(25, 60);
-  tft.setTextColor(WHITE);
+  tft.setCursor(25, 100);
   tft.setTextSize(3);
   tft.println("Please take");
-  tft.setCursor(10, 85);
+  tft.setCursor(10, 125);
   tft.println("a moment to");
-  tft.setCursor(30, 110);
+  tft.setCursor(30, 150);
   tft.println("configure");
-  tft.setCursor(20, 135);
+  tft.setCursor(20, 175);
   tft.println("your system!");
   delay(4000);
   tft.fillScreen(BLUE);
   tft.setCursor(20, 0);
-  tft.setTextColor(WHITE);
   tft.setTextSize(2);
   tft.println("The default spray");
   tft.setCursor(15, 20);
   tft.println("interval is every");
   tft.setCursor(60, 40);
-  tft.println("eight hours");
+  tft.println("eight hours.");
   tft.setCursor(20, 100);
   tft.println("Would you like it");
   tft.setCursor(20, 120);
@@ -172,14 +153,11 @@ void configSystem()
   tft.fillRect(50, 150, 80, 50, BLACK);
   tft.drawRect(50, 150, 80, 50, WHITE);
   tft.setCursor(25, 220);
-  tft.setTextColor(WHITE);
   tft.setTextSize(4);
   tft.print("Yes");
   tft.fillRect(180, 150, 80, 50, BLACK);
   tft.drawRect(180, 150, 80, 50, WHITE);
   tft.setCursor(170, 220);
-  tft.setTextColor(WHITE);
-  tft.setTextSize(4);
   tft.print("NO");
   while (answered1 == false)
   {
@@ -216,7 +194,6 @@ void configSystem()
         answered1 = true;
 
         tft.setCursor(15, 0);
-        tft.setTextColor(WHITE);
         tft.setTextSize(2);
         tft.println("How many hours would you");
         tft.setCursor(35, 15);
@@ -227,38 +204,27 @@ void configSystem()
         tft.fillRect(30, 80, 50, 50, BLACK);
         tft.drawRect(30, 80, 50, 50, WHITE);
         tft.setCursor(45, 88);
-        tft.setTextColor(WHITE);
         tft.setTextSize(4);
         tft.print("2");
         tft.fillRect(130, 80, 50, 50, BLACK);
         tft.drawRect(130, 80, 50, 50, WHITE);
         tft.setCursor(145, 88);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("4");
         tft.fillRect(230, 80, 50, 50, BLACK);
         tft.drawRect(230, 80, 50, 50, WHITE);
         tft.setCursor(245, 88);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("6");
         tft.fillRect(30, 180, 50, 50, BLACK);
         tft.drawRect(30, 180, 50, 50, WHITE);
         tft.setCursor(45, 188);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("8");
         tft.fillRect(130, 180, 50, 50, BLACK);
         tft.drawRect(130, 180, 50, 50, WHITE);
         tft.setCursor(130, 188);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("10");
         tft.fillRect(230, 180, 50, 50, BLACK);
         tft.drawRect(230, 180, 50, 50, WHITE);
         tft.setCursor(230, 188);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("12");
 
         while (answered2 == false)
@@ -282,10 +248,6 @@ void configSystem()
 
               answered2 = true;
               assignedHours = 2;
-
-              tft.fillScreen(BLUE);
-
-              config2();
             }
             else if (p.x > 130 && p.x < 180 && p.y > 80 && p.y < 130)
             {
@@ -295,10 +257,6 @@ void configSystem()
 
               answered2 = true;
               assignedHours = 4;
-
-              tft.fillScreen(BLUE);
-
-              config2();
             }
             else if (p.x > 30 && p.x < 80 && p.y > 80 && p.y < 130)
             {
@@ -308,10 +266,6 @@ void configSystem()
 
               answered2 = true;
               assignedHours = 6;
-
-              tft.fillScreen(BLUE);
-
-              config2();
             }
             else if (p.x > 230 && p.x < 280 && p.y > 180 && p.y < 230)
             {
@@ -321,10 +275,6 @@ void configSystem()
 
               answered2 = true;
               assignedHours = 8;
-
-              tft.fillScreen(BLUE);
-
-              config2();
             }
             else if (p.x > 130 && p.x < 180 && p.y > 180 && p.y < 230)
             {
@@ -334,10 +284,6 @@ void configSystem()
 
               answered2 = true;
               assignedHours = 10;
-
-              tft.fillScreen(BLUE);
-
-              config2();
             }
             else if (p.x > 30 && p.x < 80 && p.y > 180 && p.y < 230)
             {
@@ -347,11 +293,9 @@ void configSystem()
 
               answered2 = true;
               assignedHours = 12;
-
-              tft.fillScreen(BLUE);
-
-              config2();
             }
+              tft.fillScreen(BLUE);
+              config2();
           }
         }
       }
@@ -431,7 +375,7 @@ void subtractTime()
         {
           tft.setTextSize(2);
           tft.setCursor(60, 16);
-          tft.print("Misting Enclosure");
+          tft.print("Spraying Enclosure");
           digitalWrite(relay, HIGH);
           delay(wait);
           digitalWrite(relay, LOW);
@@ -441,7 +385,7 @@ void subtractTime()
         {
           tft.setTextSize(2);
           tft.setCursor(60, 16);
-          tft.print("Misting Enclosure");
+          tft.print("Spraying Enclosure");
           digitalWrite(relay, HIGH);
           delay(wait);
           digitalWrite(relay, LOW);
@@ -459,7 +403,7 @@ void subtractTime()
   if (spraying == false)
   {
     tft.setTextSize(2);
-    tft.setCursor(85, 16);
+    tft.setCursor(85, 20);
     tft.print(hours);
     tft.print(" : ");
     tft.print(minutes);
@@ -474,11 +418,10 @@ void endConfig()
   {
     wait = assignedWait;
   }
-  tft.setCursor(35, 110);
-  tft.setTextColor(WHITE);
+  tft.setCursor(35, 160);
   tft.setTextSize(2);
   tft.println("Configuration");
-  tft.setCursor(60, 110);
+  tft.setCursor(55, 180);
   tft.println("Complete!");
   delay(4000);
   tft.fillScreen(BLUE);
@@ -487,13 +430,10 @@ void endConfig()
     hours = assignedHours;
   }
   tft.setRotation(2);
-  tft.setTextColor(WHITE);
-  tft.setCursor(0, 0);
-  tft.setTextSize(2);
-  tft.print("Time Until Next ");
+  tft.setCursor(20, 0);
+  tft.print("Time Until Next");
+  tft.setCursor(0, 20);
   tft.print("Spray: ");
-  tft.setTextSize(2);
-  tft.setCursor(85, 16);
   tft.print(hours);
   tft.print(" : ");
   tft.print(minutes);
@@ -501,14 +441,12 @@ void endConfig()
   tft.print(seconds);
   tft.fillRect(75, 85, 150, 50, BLACK);
   tft.drawRect(75, 85, 150, 50, WHITE);
-  tft.setCursor(45, 95);
-  tft.setTextColor(WHITE);
+  tft.setCursor(45, 120);
   tft.setTextSize(4);
   tft.print("Spray");
   tft.fillRect(45, 200, 225, 35, BLACK);
   tft.drawRect(45, 200, 225, 35, WHITE);
-  tft.setCursor(10, 210);
-  tft.setTextColor(WHITE);
+  tft.setCursor(10, 260);
   tft.setTextSize(2);
   tft.print("Reconfigure System");
   reconfiguring = false;
@@ -551,7 +489,7 @@ void buttonPress()
       tft.fillRect(0, 15, 250, 16, BLUE);
       tft.setTextSize(2);
       tft.setCursor(60, 16);
-      tft.print("Misting Enclosure");
+      tft.print("Spraying Enclosure");
       digitalWrite(relay, HIGH);
       while (spraying == true)
       {
@@ -574,27 +512,25 @@ void buttonPress()
 
 void config2()
 {
-  tft.setCursor(0, 0);
-  tft.setTextColor(WHITE);
+  tft.setCursor(20, 0);
   tft.setTextSize(2);
-  tft.println("The default spray duration");
-  tft.setCursor(45, 20);
-  tft.println("is fifteen seconds");
-  tft.setCursor(5, 60);
-  tft.println("Would you like it to stay");
-  tft.setCursor(90, 80);
-  tft.println("that way?");
+  tft.println("The default spray");
+  tft.setCursor(5, 20);
+  tft.println("duration is fifteen");
+  tft.setCursor(80, 40);
+  tft.println("seconds.");
+  tft.setCursor(15, 80);
+  tft.println("Would you like it ");
+  tft.setCursor(15, 100);
+  tft.println("to stay that way?");
   tft.fillRect(50, 150, 80, 50, BLACK);
   tft.drawRect(50, 150, 80, 50, WHITE);
-  tft.setCursor(55, 158);
-  tft.setTextColor(WHITE);
+  tft.setCursor(25, 220);
   tft.setTextSize(4);
   tft.print("Yes");
   tft.fillRect(180, 150, 80, 50, BLACK);
   tft.drawRect(180, 150, 80, 50, WHITE);
-  tft.setCursor(200, 158);
-  tft.setTextColor(WHITE);
-  tft.setTextSize(4);
+  tft.setCursor(170, 220);
   tft.print("NO");
 
   while (answered3 == false)
@@ -632,7 +568,6 @@ void config2()
         answered3 = true;
 
         tft.setCursor(5, 0);
-        tft.setTextColor(WHITE);
         tft.setTextSize(2);
         tft.println("How many seconds would you");
         tft.setCursor(35, 15);
@@ -643,38 +578,27 @@ void config2()
         tft.fillRect(30, 80, 50, 50, BLACK);
         tft.drawRect(30, 80, 50, 50, WHITE);
         tft.setCursor(45, 88);
-        tft.setTextColor(WHITE);
         tft.setTextSize(4);
         tft.print("5");
         tft.fillRect(130, 80, 50, 50, BLACK);
         tft.drawRect(130, 80, 50, 50, WHITE);
         tft.setCursor(132, 88);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("10");
         tft.fillRect(230, 80, 50, 50, BLACK);
         tft.drawRect(230, 80, 50, 50, WHITE);
         tft.setCursor(232, 88);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("15");
         tft.fillRect(30, 180, 50, 50, BLACK);
         tft.drawRect(30, 180, 50, 50, WHITE);
         tft.setCursor(32, 188);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("20");
         tft.fillRect(130, 180, 50, 50, BLACK);
         tft.drawRect(130, 180, 50, 50, WHITE);
         tft.setCursor(132, 188);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("25");
         tft.fillRect(230, 180, 50, 50, BLACK);
         tft.drawRect(230, 180, 50, 50, WHITE);
         tft.setCursor(232, 188);
-        tft.setTextColor(WHITE);
-        tft.setTextSize(4);
         tft.print("30");
 
         while (answered4 == false)
@@ -698,10 +622,6 @@ void config2()
 
               answered4 = true;
               assignedWait = 5000;
-
-              tft.fillScreen(BLUE);
-
-              endConfig();
             }
             else if (p.x > 130 && p.x < 180 && p.y > 80 && p.y < 130)
             {
@@ -711,10 +631,6 @@ void config2()
 
               answered4 = true;
               assignedWait = 10000;
-
-              tft.fillScreen(BLUE);
-
-              endConfig();
             }
             else if (p.x > 30 && p.x < 80 && p.y > 80 && p.y < 130)
             {
@@ -724,10 +640,6 @@ void config2()
 
               answered4 = true;
               assignedWait = 15000;
-
-              tft.fillScreen(BLUE);
-
-              endConfig();
             }
             else if (p.x > 230 && p.x < 280 && p.y > 180 && p.y < 230)
             {
@@ -737,10 +649,6 @@ void config2()
 
               answered4 = true;
               assignedWait = 20000;
-
-              tft.fillScreen(BLUE);
-
-              endConfig();
             }
             else if (p.x > 130 && p.x < 180 && p.y > 180 && p.y < 230)
             {
@@ -750,10 +658,6 @@ void config2()
 
               answered4 = true;
               assignedWait = 25000;
-
-              tft.fillScreen(BLUE);
-
-              endConfig();
             }
             else if (p.x > 30 && p.x < 80 && p.y > 180 && p.y < 230)
             {
@@ -763,11 +667,9 @@ void config2()
 
               answered4 = true;
               assignedWait = 30000;
-
-              tft.fillScreen(BLUE);
-
-              endConfig();
             }
+             tft.fillScreen(BLUE);
+             endConfig();
           }
         }
       }
