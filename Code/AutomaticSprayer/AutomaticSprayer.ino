@@ -421,7 +421,7 @@ void endConfig()
   tft.setCursor(35, 160);
   tft.setTextSize(2);
   tft.println("Configuration");
-  tft.setCursor(55, 180);
+  tft.setCursor(60, 180);
   tft.println("Complete!");
   delay(4000);
   tft.fillScreen(BLUE);
@@ -439,13 +439,13 @@ void endConfig()
   tft.print(minutes);
   tft.print(" : ");
   tft.print(seconds);
-  tft.fillRect(75, 85, 150, 50, BLACK);
-  tft.drawRect(75, 85, 150, 50, WHITE);
+  tft.fillRect(40, 112, 150, 50, BLACK);
+  tft.drawRect(40, 112, 150, 50, WHITE);
   tft.setCursor(45, 120);
   tft.setTextSize(4);
   tft.print("Spray");
-  tft.fillRect(45, 200, 225, 35, BLACK);
-  tft.drawRect(45, 200, 225, 35, WHITE);
+  tft.fillRect(7, 252, 225, 35, BLACK);
+  tft.drawRect(7, 252, 225, 35, WHITE);
   tft.setCursor(10, 260);
   tft.setTextSize(2);
   tft.print("Reconfigure System");
