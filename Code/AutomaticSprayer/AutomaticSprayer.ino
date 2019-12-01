@@ -73,12 +73,10 @@ void setup() {
   } else if (identifier == 0x7575) {
   } else if (identifier == 0x9341) {
   } else if (identifier == 0x8357) {
-  } else if (identifier == 0x0101)
-  {
+  } else if (identifier == 0x0101) {
     identifier = 0x9341;
   }
-  else
-  {
+  else {
     identifier = 0x9341;
   }
 
@@ -87,26 +85,21 @@ void setup() {
   configSystem();
 }
 
-void loop()
-{
-  if (reconfiguring == false)
-  {
+void loop() {
+  if (reconfiguring == false) {
     buttonPress();
     delay(8);
-    if (times == 125)
-    {
+    if (times == 125) {
       times = 0;
       subtractTime();
     }
-    else
-    {
+    else {
       times++;
     }
   }
 }
 
-void boot()
-{
+void boot() {
   tft.fillScreen(BLUE);
   tft.setRotation(2);
   tft.setCursor(20, 0);
@@ -126,8 +119,7 @@ void boot()
   tft.fillScreen(BLUE);
 }
 
-void configSystem()
-{
+void configSystem() {
   tft.setCursor(25, 100);
   tft.setTextSize(3);
   tft.println("Please take");
@@ -159,12 +151,10 @@ void configSystem()
   tft.drawRect(180, 150, 80, 50, WHITE);
   tft.setCursor(170, 220);
   tft.print("NO");
-  while (answered1 == false)
-  {
+  while (answered1 == false) {
     TSPoint p = ts.getPoint();
 
     if (p.z > ts.pressureThreshhold) {
-
       Serial.print("X = "); Serial.print(p.x);
       Serial.print("\tY = "); Serial.print(p.y);
       Serial.print("\n");
@@ -172,8 +162,7 @@ void configSystem()
       p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
       p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
 
-      if (p.x > 180 && p.x < 260 && p.y > 80 && p.y < 200)
-      {
+      if (p.x > 180 && p.x < 260 && p.y > 80 && p.y < 200) {
         //This is important, because the libraries are sharing pins
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
@@ -184,8 +173,7 @@ void configSystem()
 
         config2();
       }
-      else if (p.x > 50 && p.x < 130 && p.y > 80 && p.y < 200)
-      {
+      else if (p.x > 50 && p.x < 130 && p.y > 80 && p.y < 200) {
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
 
@@ -227,8 +215,7 @@ void configSystem()
         tft.setCursor(230, 188);
         tft.print("12");
 
-        while (answered2 == false)
-        {
+        while (answered2 == false) {
           TSPoint p = ts.getPoint();
 
           if (p.z > ts.pressureThreshhold) {
@@ -240,8 +227,7 @@ void configSystem()
             p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
             p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
 
-            if (p.x > 230 && p.x < 280 && p.y > 80 && p.y < 130)
-            {
+            if (p.x > 230 && p.x < 280 && p.y > 80 && p.y < 130) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -249,8 +235,7 @@ void configSystem()
               answered2 = true;
               assignedHours = 2;
             }
-            else if (p.x > 130 && p.x < 180 && p.y > 80 && p.y < 130)
-            {
+            else if (p.x > 130 && p.x < 180 && p.y > 80 && p.y < 130) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -258,8 +243,7 @@ void configSystem()
               answered2 = true;
               assignedHours = 4;
             }
-            else if (p.x > 30 && p.x < 80 && p.y > 80 && p.y < 130)
-            {
+            else if (p.x > 30 && p.x < 80 && p.y > 80 && p.y < 130) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -267,8 +251,7 @@ void configSystem()
               answered2 = true;
               assignedHours = 6;
             }
-            else if (p.x > 230 && p.x < 280 && p.y > 180 && p.y < 230)
-            {
+            else if (p.x > 230 && p.x < 280 && p.y > 180 && p.y < 230) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -276,8 +259,7 @@ void configSystem()
               answered2 = true;
               assignedHours = 8;
             }
-            else if (p.x > 130 && p.x < 180 && p.y > 180 && p.y < 230)
-            {
+            else if (p.x > 130 && p.x < 180 && p.y > 180 && p.y < 230) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -285,8 +267,7 @@ void configSystem()
               answered2 = true;
               assignedHours = 10;
             }
-            else if (p.x > 30 && p.x < 80 && p.y > 180 && p.y < 230)
-            {
+            else if (p.x > 30 && p.x < 80 && p.y > 180 && p.y < 230) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -294,8 +275,10 @@ void configSystem()
               answered2 = true;
               assignedHours = 12;
             }
+            if (answered2 == true) {
               tft.fillScreen(BLUE);
               config2();
+            }
           }
         }
       }
@@ -303,27 +286,20 @@ void configSystem()
   }
 }
 
-void subtractTime()
-{
-  if (seconds == 0)
-  {
-    if (minutes == 0)
-    {
-      if (hours == 0)
-      {
-        if (spraying == false)
-        {
+void subtractTime() {
+  if (seconds == 0) {
+    if (minutes == 0) {
+      if (hours == 0) {
+        if (spraying == false) {
           tft.fillRect(0, 15, 250, 16, BLUE);
         }
-        if (answered2 == true)
-        {
+        if (answered2 == true) {
           digitalWrite(relay, HIGH);
           delay(wait);
           digitalWrite(relay, LOW);
           hours = assignedHours;
         }
-        else
-        {
+        else {
           digitalWrite(relay, HIGH);
           delay(wait);
           digitalWrite(relay, LOW);
@@ -332,10 +308,8 @@ void subtractTime()
         minutes = 0;
         seconds = 0;
       }
-      else
-      {
-        if (spraying == false)
-        {
+      else {
+        if (spraying == false) {
           tft.fillRect(0, 15, 250, 16, BLUE);
         }
         hours = hours - 1;
@@ -343,36 +317,27 @@ void subtractTime()
         seconds = 59;
       }
     }
-    else
-    {
-      if (spraying == false)
-      {
+    else {
+      if (spraying == false) {
         tft.fillRect(0, 15, 250, 16, BLUE);
       }
       minutes = minutes - 1;
       seconds = 59;
     }
   }
-  else
-  {
-    if (spraying == false)
-    {
+  else {
+    if (spraying == false) {
       tft.fillRect(0, 15, 250, 16, BLUE);
     }
     seconds = seconds - 1;
   }
-  if (hours == 0)
-  {
-    if (minutes == 0)
-    {
-      if (seconds == 0)
-      {
-        if (spraying == false)
-        {
+  if (hours == 0) {
+    if (minutes == 0) {
+      if (seconds == 0) {
+        if (spraying == false) {
           tft.fillRect(0, 15, 250, 16, BLUE);
         }
-        if (answered2 == true)
-        {
+        if (answered2 == true) {
           tft.setTextSize(2);
           tft.setCursor(60, 16);
           tft.print("Spraying Enclosure");
@@ -381,8 +346,7 @@ void subtractTime()
           digitalWrite(relay, LOW);
           hours = assignedHours;
         }
-        else
-        {
+        else {
           tft.setTextSize(2);
           tft.setCursor(60, 16);
           tft.print("Spraying Enclosure");
@@ -395,13 +359,11 @@ void subtractTime()
         seconds = 0;
       }
     }
-    if (spraying == false)
-    {
+    if (spraying == false) {
       tft.fillRect(0, 15, 300, 18, BLUE);
     }
   }
-  if (spraying == false)
-  {
+  if (spraying == false) {
     tft.setTextSize(2);
     tft.setCursor(85, 20);
     tft.print(hours);
@@ -412,21 +374,18 @@ void subtractTime()
   }
 }
 
-void endConfig()
-{
-  if (answered4 == true)
-  {
+void endConfig() {
+  if (answered4 == true) {
     wait = assignedWait;
   }
-  tft.setCursor(35, 160);
+  tft.setCursor(45, 160);
   tft.setTextSize(2);
   tft.println("Configuration");
-  tft.setCursor(60, 180);
+  tft.setCursor(70, 180);
   tft.println("Complete!");
   delay(4000);
   tft.fillScreen(BLUE);
-  if (answered2 == true)
-  {
+  if (answered2 == true) {
     hours = assignedHours;
   }
   tft.setRotation(2);
@@ -439,21 +398,20 @@ void endConfig()
   tft.print(minutes);
   tft.print(" : ");
   tft.print(seconds);
-  tft.fillRect(40, 112, 150, 50, BLACK);
-  tft.drawRect(40, 112, 150, 50, WHITE);
+  tft.fillRect(40, 112, 130, 50, BLACK);
+  tft.drawRect(40, 112, 130, 50, WHITE);
   tft.setCursor(45, 120);
   tft.setTextSize(4);
   tft.print("Spray");
-  tft.fillRect(7, 252, 225, 35, BLACK);
-  tft.drawRect(7, 252, 225, 35, WHITE);
+  tft.fillRect(4, 252, 225, 35, BLACK);
+  tft.drawRect(4, 252, 225, 35, WHITE);
   tft.setCursor(10, 260);
   tft.setTextSize(2);
   tft.print("Reconfigure System");
   reconfiguring = false;
 }
 
-void buttonPress()
-{
+void buttonPress() {
   TSPoint p = ts.getPoint();
 
   if (p.z > ts.pressureThreshhold) {
@@ -461,8 +419,7 @@ void buttonPress()
     p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
     p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
 
-    if (p.x > 45 && p.x < 270 && p.y > 200 && p.y < 235)
-    {
+    if (p.x > 45 && p.x < 270 && p.y > 200 && p.y < 235) {
       //This is important, because the libraries are sharing pins
       pinMode(XM, OUTPUT);
       pinMode(YP, OUTPUT);
@@ -480,8 +437,7 @@ void buttonPress()
       tft.fillScreen(BLUE);
       configSystem();
     }
-    if (p.x > 75 && p.x < 225 && p.y > 85 && p.y < 135)
-    {
+    if (p.x > 75 && p.x < 225 && p.y > 85 && p.y < 135) {
       //This is important, because the libraries are sharing pins
       pinMode(XM, OUTPUT);
       pinMode(YP, OUTPUT);
@@ -491,13 +447,11 @@ void buttonPress()
       tft.setCursor(60, 16);
       tft.print("Spraying Enclosure");
       digitalWrite(relay, HIGH);
-      while (spraying == true)
-      {
+      while (spraying == true) {
         delay(1000);
         subtractTime();
         waitTimes = waitTimes + 1000;
-        if (waitTimes == wait)
-        {
+        if (waitTimes == wait) {
           waitTimes = 0;
           digitalWrite(relay, LOW);
           spraying = false;
@@ -533,8 +487,7 @@ void config2()
   tft.setCursor(170, 220);
   tft.print("NO");
 
-  while (answered3 == false)
-  {
+  while (answered3 == false) {
     TSPoint p = ts.getPoint();
 
     if (p.z > ts.pressureThreshhold) {
@@ -546,8 +499,7 @@ void config2()
       p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
       p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
 
-      if (p.x > 180 && p.x < 260 && p.y > 80 && p.y < 200)
-      {
+      if (p.x > 180 && p.x < 260 && p.y > 80 && p.y < 200) {
         //This is important, because the libraries are sharing pins
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
@@ -558,8 +510,7 @@ void config2()
 
         endConfig();
       }
-      else if (p.x > 50 && p.x < 130 && p.y > 80 && p.y < 200)
-      {
+      else if (p.x > 50 && p.x < 130 && p.y > 80 && p.y < 200) {
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
 
@@ -601,8 +552,7 @@ void config2()
         tft.setCursor(232, 188);
         tft.print("30");
 
-        while (answered4 == false)
-        {
+        while (answered4 == false) {
           TSPoint p = ts.getPoint();
 
           if (p.z > ts.pressureThreshhold) {
@@ -614,8 +564,7 @@ void config2()
             p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
             p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
 
-            if (p.x > 230 && p.x < 280 && p.y > 80 && p.y < 130)
-            {
+            if (p.x > 230 && p.x < 280 && p.y > 80 && p.y < 130) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -623,8 +572,7 @@ void config2()
               answered4 = true;
               assignedWait = 5000;
             }
-            else if (p.x > 130 && p.x < 180 && p.y > 80 && p.y < 130)
-            {
+            else if (p.x > 130 && p.x < 180 && p.y > 80 && p.y < 130) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -632,8 +580,7 @@ void config2()
               answered4 = true;
               assignedWait = 10000;
             }
-            else if (p.x > 30 && p.x < 80 && p.y > 80 && p.y < 130)
-            {
+            else if (p.x > 30 && p.x < 80 && p.y > 80 && p.y < 130) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -641,8 +588,7 @@ void config2()
               answered4 = true;
               assignedWait = 15000;
             }
-            else if (p.x > 230 && p.x < 280 && p.y > 180 && p.y < 230)
-            {
+            else if (p.x > 230 && p.x < 280 && p.y > 180 && p.y < 230) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -650,8 +596,7 @@ void config2()
               answered4 = true;
               assignedWait = 20000;
             }
-            else if (p.x > 130 && p.x < 180 && p.y > 180 && p.y < 230)
-            {
+            else if (p.x > 130 && p.x < 180 && p.y > 180 && p.y < 230) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -659,8 +604,7 @@ void config2()
               answered4 = true;
               assignedWait = 25000;
             }
-            else if (p.x > 30 && p.x < 80 && p.y > 180 && p.y < 230)
-            {
+            else if (p.x > 30 && p.x < 80 && p.y > 180 && p.y < 230) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -668,8 +612,10 @@ void config2()
               answered4 = true;
               assignedWait = 30000;
             }
+            if (answered4 == true) {
              tft.fillScreen(BLUE);
              endConfig();
+            }
           }
         }
       }
