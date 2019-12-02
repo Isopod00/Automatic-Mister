@@ -123,9 +123,9 @@ void configSystem() {
   tft.setCursor(25, 100);
   tft.setTextSize(3);
   tft.println("Please take");
-  tft.setCursor(10, 125);
+  tft.setCursor(15, 125);
   tft.println("a moment to");
-  tft.setCursor(30, 150);
+  tft.setCursor(35, 150);
   tft.println("configure");
   tft.setCursor(20, 175);
   tft.println("your system!");
@@ -136,19 +136,19 @@ void configSystem() {
   tft.println("The default spray");
   tft.setCursor(15, 20);
   tft.println("interval is every");
-  tft.setCursor(60, 40);
+  tft.setCursor(58, 40);
   tft.println("eight hours.");
   tft.setCursor(20, 100);
   tft.println("Would you like it");
   tft.setCursor(20, 120);
   tft.println("to stay that way?");
-  tft.fillRect(50, 150, 80, 50, BLACK);
-  tft.drawRect(50, 150, 80, 50, WHITE);
+  tft.fillRect(20, 210, 80, 50, BLACK);
+  tft.drawRect(20, 210, 80, 50, WHITE);
   tft.setCursor(25, 220);
   tft.setTextSize(4);
   tft.print("Yes");
-  tft.fillRect(180, 150, 80, 50, BLACK);
-  tft.drawRect(180, 150, 80, 50, WHITE);
+  tft.fillRect(150, 210, 80, 50, BLACK);
+  tft.drawRect(150, 210, 80, 50, WHITE);
   tft.setCursor(170, 220);
   tft.print("NO");
   while (answered1 == false) {
@@ -162,7 +162,7 @@ void configSystem() {
       p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
       p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
 
-      if (p.x > 180 && p.x < 260 && p.y > 80 && p.y < 200) {
+      if (p.x > 160 && p.x < 210 && p.y > 20 && p.y < 100) {
         //This is important, because the libraries are sharing pins
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
@@ -173,7 +173,7 @@ void configSystem() {
 
         config2();
       }
-      else if (p.x > 50 && p.x < 130 && p.y > 80 && p.y < 200) {
+      else if (p.x > 150 && p.x < 230 && p.y > 160 && p.y < 210) {
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
 
@@ -181,38 +181,38 @@ void configSystem() {
 
         answered1 = true;
 
-        tft.setCursor(15, 0);
+        tft.setCursor(0, 0);
         tft.setTextSize(2);
-        tft.println("How many hours would you");
-        tft.setCursor(35, 15);
-        tft.println("like to set the spray");
-        tft.setCursor(95, 30);
-        tft.println("interval to?");
+        tft.println("How many hours would");
+        tft.setCursor(5, 20);
+        tft.println("you like to set the");
+        tft.setCursor(10, 40);
+        tft.println("spray interval to?");
 
-        tft.fillRect(30, 80, 50, 50, BLACK);
-        tft.drawRect(30, 80, 50, 50, WHITE);
-        tft.setCursor(45, 88);
+        tft.fillRect(15, 120, 50, 50, BLACK);
+        tft.drawRect(15, 120, 50, 50, WHITE);
+        tft.setCursor(30, 128);
         tft.setTextSize(4);
         tft.print("2");
-        tft.fillRect(130, 80, 50, 50, BLACK);
-        tft.drawRect(130, 80, 50, 50, WHITE);
-        tft.setCursor(145, 88);
+        tft.fillRect(95, 120, 50, 50, BLACK);
+        tft.drawRect(95, 120, 50, 50, WHITE);
+        tft.setCursor(110, 128);
         tft.print("4");
-        tft.fillRect(230, 80, 50, 50, BLACK);
-        tft.drawRect(230, 80, 50, 50, WHITE);
-        tft.setCursor(245, 88);
+        tft.fillRect(175, 120, 50, 50, BLACK);
+        tft.drawRect(175, 120, 50, 50, WHITE);
+        tft.setCursor(190, 128);
         tft.print("6");
-        tft.fillRect(30, 180, 50, 50, BLACK);
-        tft.drawRect(30, 180, 50, 50, WHITE);
-        tft.setCursor(45, 188);
+        tft.fillRect(15, 200, 50, 50, BLACK);
+        tft.drawRect(15, 200, 50, 50, WHITE);
+        tft.setCursor(30, 208);
         tft.print("8");
-        tft.fillRect(130, 180, 50, 50, BLACK);
-        tft.drawRect(130, 180, 50, 50, WHITE);
-        tft.setCursor(130, 188);
+        tft.fillRect(95, 200, 50, 50, BLACK);
+        tft.drawRect(95, 200, 50, 50, WHITE);
+        tft.setCursor(96, 208);
         tft.print("10");
-        tft.fillRect(230, 180, 50, 50, BLACK);
-        tft.drawRect(230, 180, 50, 50, WHITE);
-        tft.setCursor(230, 188);
+        tft.fillRect(175, 200, 50, 50, BLACK);
+        tft.drawRect(175, 200, 50, 50, WHITE);
+        tft.setCursor(176, 208);
         tft.print("12");
 
         while (answered2 == false) {
@@ -291,7 +291,7 @@ void subtractTime() {
     if (minutes == 0) {
       if (hours == 0) {
         if (spraying == false) {
-          tft.fillRect(0, 15, 250, 16, BLUE);
+          tft.fillRect(72, 19, 250, 18, BLUE);
         }
         if (answered2 == true) {
           digitalWrite(relay, HIGH);
@@ -310,7 +310,7 @@ void subtractTime() {
       }
       else {
         if (spraying == false) {
-          tft.fillRect(0, 15, 250, 16, BLUE);
+          tft.fillRect(72, 19, 250, 18, BLUE);
         }
         hours = hours - 1;
         minutes = 59;
@@ -319,7 +319,7 @@ void subtractTime() {
     }
     else {
       if (spraying == false) {
-        tft.fillRect(0, 15, 250, 16, BLUE);
+        tft.fillRect(72, 19, 250, 18, BLUE);
       }
       minutes = minutes - 1;
       seconds = 59;
@@ -327,7 +327,7 @@ void subtractTime() {
   }
   else {
     if (spraying == false) {
-      tft.fillRect(0, 15, 250, 16, BLUE);
+      tft.fillRect(72, 19, 250, 18, BLUE);
     }
     seconds = seconds - 1;
   }
@@ -335,11 +335,11 @@ void subtractTime() {
     if (minutes == 0) {
       if (seconds == 0) {
         if (spraying == false) {
-          tft.fillRect(0, 15, 250, 16, BLUE);
+          tft.fillRect(0, 19, 300, 30, BLUE);
         }
         if (answered2 == true) {
           tft.setTextSize(2);
-          tft.setCursor(60, 16);
+          tft.setCursor(10, 20);
           tft.print("Spraying Enclosure");
           digitalWrite(relay, HIGH);
           delay(wait);
@@ -348,7 +348,7 @@ void subtractTime() {
         }
         else {
           tft.setTextSize(2);
-          tft.setCursor(60, 16);
+          tft.setCursor(10, 20);
           tft.print("Spraying Enclosure");
           digitalWrite(relay, HIGH);
           delay(wait);
@@ -360,12 +360,12 @@ void subtractTime() {
       }
     }
     if (spraying == false) {
-      tft.fillRect(0, 15, 300, 18, BLUE);
+      tft.fillRect(72, 19, 250, 18, BLUE);
     }
   }
   if (spraying == false) {
     tft.setTextSize(2);
-    tft.setCursor(85, 20);
+    tft.setCursor(85, 22); 
     tft.print(hours);
     tft.print(" : ");
     tft.print(minutes);
@@ -378,10 +378,10 @@ void endConfig() {
   if (answered4 == true) {
     wait = assignedWait;
   }
-  tft.setCursor(45, 160);
+  tft.setCursor(45, 155);
   tft.setTextSize(2);
   tft.println("Configuration");
-  tft.setCursor(70, 180);
+  tft.setCursor(70, 175);
   tft.println("Complete!");
   delay(4000);
   tft.fillScreen(BLUE);
@@ -389,23 +389,23 @@ void endConfig() {
     hours = assignedHours;
   }
   tft.setRotation(2);
-  tft.setCursor(20, 0);
+  tft.setCursor(20, 1);
   tft.print("Time Until Next");
-  tft.setCursor(0, 20);
+  tft.setCursor(5, 21);
   tft.print("Spray: ");
   tft.print(hours);
   tft.print(" : ");
   tft.print(minutes);
   tft.print(" : ");
   tft.print(seconds);
-  tft.fillRect(40, 112, 130, 50, BLACK);
-  tft.drawRect(40, 112, 130, 50, WHITE);
-  tft.setCursor(45, 120);
+  tft.fillRect(50, 112, 130, 50, BLACK);
+  tft.drawRect(50, 112, 130, 50, WHITE);
+  tft.setCursor(55, 120);
   tft.setTextSize(4);
   tft.print("Spray");
-  tft.fillRect(4, 252, 225, 35, BLACK);
-  tft.drawRect(4, 252, 225, 35, WHITE);
-  tft.setCursor(10, 260);
+  tft.fillRect(9, 252, 225, 35, BLACK);
+  tft.drawRect(9, 252, 225, 35, WHITE);
+  tft.setCursor(15, 260);
   tft.setTextSize(2);
   tft.print("Reconfigure System");
   reconfiguring = false;
@@ -419,7 +419,7 @@ void buttonPress() {
     p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
     p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
 
-    if (p.x > 45 && p.x < 270 && p.y > 200 && p.y < 235) {
+    if (p.x > 4 && p.x < 229 && p.y > 217 && p.y < 252) {
       //This is important, because the libraries are sharing pins
       pinMode(XM, OUTPUT);
       pinMode(YP, OUTPUT);
@@ -437,14 +437,14 @@ void buttonPress() {
       tft.fillScreen(BLUE);
       configSystem();
     }
-    if (p.x > 75 && p.x < 225 && p.y > 85 && p.y < 135) {
+    if (p.x > 50 && p.x < 180 && p.y > 62 && p.y < 112) {
       //This is important, because the libraries are sharing pins
       pinMode(XM, OUTPUT);
       pinMode(YP, OUTPUT);
       spraying = true;
-      tft.fillRect(0, 15, 250, 16, BLUE);
+      tft.fillRect(0, 19, 300, 30, BLUE);
       tft.setTextSize(2);
-      tft.setCursor(60, 16);
+      tft.setCursor(10, 20);
       tft.print("Spraying Enclosure");
       digitalWrite(relay, HIGH);
       while (spraying == true) {
@@ -457,7 +457,9 @@ void buttonPress() {
           spraying = false;
         }
       }
-      tft.fillRect(0, 15, 300, 18, BLUE);
+      tft.fillRect(0, 15, 300, 20, BLUE);
+      tft.setCursor(5, 21);
+      tft.print("Spray: ");
     }
   }
   pinMode(XM, OUTPUT);
@@ -477,13 +479,13 @@ void config2()
   tft.println("Would you like it ");
   tft.setCursor(15, 100);
   tft.println("to stay that way?");
-  tft.fillRect(50, 150, 80, 50, BLACK);
-  tft.drawRect(50, 150, 80, 50, WHITE);
+  tft.fillRect(20, 210, 80, 50, BLACK);
+  tft.drawRect(20, 210, 80, 50, WHITE);
   tft.setCursor(25, 220);
   tft.setTextSize(4);
   tft.print("Yes");
-  tft.fillRect(180, 150, 80, 50, BLACK);
-  tft.drawRect(180, 150, 80, 50, WHITE);
+  tft.fillRect(150, 210, 80, 50, BLACK);
+  tft.drawRect(150, 210, 80, 50, WHITE);
   tft.setCursor(170, 220);
   tft.print("NO");
 
@@ -499,7 +501,7 @@ void config2()
       p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
       p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
 
-      if (p.x > 180 && p.x < 260 && p.y > 80 && p.y < 200) {
+      if (p.x > 20 && p.x < 100 && p.y > 160 && p.y < 210) {
         //This is important, because the libraries are sharing pins
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
@@ -510,7 +512,7 @@ void config2()
 
         endConfig();
       }
-      else if (p.x > 50 && p.x < 130 && p.y > 80 && p.y < 200) {
+      else if (p.x > 150 && p.x < 230 && p.y > 160 && p.y < 210) {
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
 
@@ -518,38 +520,40 @@ void config2()
 
         answered3 = true;
 
-        tft.setCursor(5, 0);
+        tft.setCursor(20, 0);
         tft.setTextSize(2);
-        tft.println("How many seconds would you");
-        tft.setCursor(35, 15);
-        tft.println("like to set the spray");
-        tft.setCursor(95, 30);
+        tft.println("How many seconds");
+        tft.setCursor(15, 20);
+        tft.println("would you like to");
+        tft.setCursor(40, 40);
+        tft.println("set the spray");
+        tft.setCursor(50, 60);
         tft.println("duration to?");
 
-        tft.fillRect(30, 80, 50, 50, BLACK);
-        tft.drawRect(30, 80, 50, 50, WHITE);
-        tft.setCursor(45, 88);
+         tft.fillRect(15, 120, 50, 50, BLACK);
+        tft.drawRect(15, 120, 50, 50, WHITE);
+        tft.setCursor(30, 128);
         tft.setTextSize(4);
         tft.print("5");
-        tft.fillRect(130, 80, 50, 50, BLACK);
-        tft.drawRect(130, 80, 50, 50, WHITE);
-        tft.setCursor(132, 88);
+        tft.fillRect(95, 120, 50, 50, BLACK);
+        tft.drawRect(95, 120, 50, 50, WHITE);
+        tft.setCursor(96, 128);
         tft.print("10");
-        tft.fillRect(230, 80, 50, 50, BLACK);
-        tft.drawRect(230, 80, 50, 50, WHITE);
-        tft.setCursor(232, 88);
+        tft.fillRect(175, 120, 50, 50, BLACK);
+        tft.drawRect(175, 120, 50, 50, WHITE);
+        tft.setCursor(176, 128);
         tft.print("15");
-        tft.fillRect(30, 180, 50, 50, BLACK);
-        tft.drawRect(30, 180, 50, 50, WHITE);
-        tft.setCursor(32, 188);
+        tft.fillRect(15, 200, 50, 50, BLACK);
+        tft.drawRect(15, 200, 50, 50, WHITE);
+        tft.setCursor(16, 208);
         tft.print("20");
-        tft.fillRect(130, 180, 50, 50, BLACK);
-        tft.drawRect(130, 180, 50, 50, WHITE);
-        tft.setCursor(132, 188);
+        tft.fillRect(95, 200, 50, 50, BLACK);
+        tft.drawRect(95, 200, 50, 50, WHITE);
+        tft.setCursor(96, 208);
         tft.print("25");
-        tft.fillRect(230, 180, 50, 50, BLACK);
-        tft.drawRect(230, 180, 50, 50, WHITE);
-        tft.setCursor(232, 188);
+        tft.fillRect(175, 200, 50, 50, BLACK);
+        tft.drawRect(175, 200, 50, 50, WHITE);
+        tft.setCursor(176, 208);
         tft.print("30");
 
         while (answered4 == false) {
