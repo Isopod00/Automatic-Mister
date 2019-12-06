@@ -19,9 +19,9 @@
 #define XP 9   // can be a digital pin
 
 #define TS_MINX 130
-#define TS_MINY 904
-#define TS_MAXX 938
-#define TS_MAXY 138
+#define TS_MINY 130
+#define TS_MAXX 940
+#define TS_MAXY 940
 
 // Assign human-readable names to some common 16-bit color values:
 #define  BLACK   0x0000
@@ -79,7 +79,6 @@ void setup() {
   else {
     identifier = 0x9341;
   }
-
   tft.begin(identifier);
   boot();
   configSystem();
@@ -123,7 +122,7 @@ void configSystem() {
   tft.setCursor(25, 100);
   tft.setTextSize(3);
   tft.println("Please take");
-  tft.setCursor(15, 125);
+  tft.setCursor(20, 125);
   tft.println("a moment to");
   tft.setCursor(35, 150);
   tft.println("configure");
@@ -136,7 +135,7 @@ void configSystem() {
   tft.println("The default spray");
   tft.setCursor(15, 20);
   tft.println("interval is every");
-  tft.setCursor(58, 40);
+  tft.setCursor(50, 40);
   tft.println("eight hours.");
   tft.setCursor(20, 100);
   tft.println("Would you like it");
@@ -159,10 +158,7 @@ void configSystem() {
       Serial.print("\tY = "); Serial.print(p.y);
       Serial.print("\n");
 
-      p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
-      p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
-
-      if (p.x > 160 && p.x < 210 && p.y > 20 && p.y < 100) {
+      if (p.x > 280 && p.x < 400 && p.y > 185 && p.y < 420) {
         //This is important, because the libraries are sharing pins
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
@@ -173,7 +169,7 @@ void configSystem() {
 
         config2();
       }
-      else if (p.x > 150 && p.x < 230 && p.y > 160 && p.y < 210) {
+      else if (p.x > 255 && p.x < 385 && p.y > 610 && p.y < 860) {
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
 
@@ -224,10 +220,7 @@ void configSystem() {
             Serial.print("\tY = "); Serial.print(p.y);
             Serial.print("\n");
 
-            p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
-            p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
-
-            if (p.x > 230 && p.x < 280 && p.y > 80 && p.y < 130) {
+            if (p.x > 520 && p.x < 640 && p.y > 180 && p.y < 295) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -235,7 +228,7 @@ void configSystem() {
               answered2 = true;
               assignedHours = 2;
             }
-            else if (p.x > 130 && p.x < 180 && p.y > 80 && p.y < 130) {
+            else if (p.x > 520 && p.x < 640 && p.y > 445 && p.y < 580) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -243,7 +236,7 @@ void configSystem() {
               answered2 = true;
               assignedHours = 4;
             }
-            else if (p.x > 30 && p.x < 80 && p.y > 80 && p.y < 130) {
+            else if (p.x > 520 && p.x < 640 && p.y > 700 && p.y < 850) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -251,7 +244,7 @@ void configSystem() {
               answered2 = true;
               assignedHours = 6;
             }
-            else if (p.x > 230 && p.x < 280 && p.y > 180 && p.y < 230) {
+            else if (p.x > 285 && p.x < 430 && p.y > 180 && p.y < 295) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -259,7 +252,7 @@ void configSystem() {
               answered2 = true;
               assignedHours = 8;
             }
-            else if (p.x > 130 && p.x < 180 && p.y > 180 && p.y < 230) {
+            else if (p.x > 285 && p.x < 430 && p.y > 445 && p.y < 580) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -267,7 +260,7 @@ void configSystem() {
               answered2 = true;
               assignedHours = 10;
             }
-            else if (p.x > 30 && p.x < 80 && p.y > 180 && p.y < 230) {
+            else if (p.x > 285 && p.x < 430 && p.y > 700 && p.y < 850) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -335,7 +328,7 @@ void subtractTime() {
     if (minutes == 0) {
       if (seconds == 0) {
         if (spraying == false) {
-          tft.fillRect(0, 19, 300, 30, BLUE);
+          tft.fillRect(0, 0, 300, 50, BLUE);
         }
         if (answered2 == true) {
           tft.setTextSize(2);
@@ -360,12 +353,16 @@ void subtractTime() {
       }
     }
     if (spraying == false) {
-      tft.fillRect(72, 19, 250, 18, BLUE);
+      tft.fillRect(0, 19, 300, 18, BLUE);
     }
   }
   if (spraying == false) {
     tft.setTextSize(2);
-    tft.setCursor(85, 22); 
+    tft.setCursor(20, 1);
+    tft.print("Time Until Next");
+    tft.setCursor(5, 21);
+    tft.print("Spray: ");
+    tft.setCursor(85, 21); 
     tft.print(hours);
     tft.print(" : ");
     tft.print(minutes);
@@ -381,8 +378,8 @@ void endConfig() {
   tft.setCursor(45, 155);
   tft.setTextSize(2);
   tft.println("Configuration");
-  tft.setCursor(70, 175);
-  tft.println("Complete!");
+  tft.setCursor(50, 175);
+  tft.println("is complete!");
   delay(4000);
   tft.fillScreen(BLUE);
   if (answered2 == true) {
@@ -416,10 +413,11 @@ void buttonPress() {
 
   if (p.z > ts.pressureThreshhold) {
 
-    p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
-    p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
+    Serial.print("X = "); Serial.print(p.x);
+    Serial.print("\tY = "); Serial.print(p.y);
+    Serial.print("\n");
 
-    if (p.x > 4 && p.x < 229 && p.y > 217 && p.y < 252) {
+    if (p.x > 200 && p.x < 250 && p.y > 201 && p.y < 843) {
       //This is important, because the libraries are sharing pins
       pinMode(XM, OUTPUT);
       pinMode(YP, OUTPUT);
@@ -437,12 +435,12 @@ void buttonPress() {
       tft.fillScreen(BLUE);
       configSystem();
     }
-    if (p.x > 50 && p.x < 180 && p.y > 62 && p.y < 112) {
+    if (p.x > 520 && p.x < 660 && p.y > 295 && p.y < 705) {
       //This is important, because the libraries are sharing pins
       pinMode(XM, OUTPUT);
       pinMode(YP, OUTPUT);
       spraying = true;
-      tft.fillRect(0, 19, 300, 30, BLUE);
+      tft.fillRect(0, 0, 300, 50, BLUE);
       tft.setTextSize(2);
       tft.setCursor(10, 20);
       tft.print("Spraying Enclosure");
@@ -457,7 +455,9 @@ void buttonPress() {
           spraying = false;
         }
       }
-      tft.fillRect(0, 15, 300, 20, BLUE);
+      tft.fillRect(0, 15, 300, 30, BLUE);
+      tft.setCursor(20, 1);
+      tft.print("Time Until Next");
       tft.setCursor(5, 21);
       tft.print("Spray: ");
     }
@@ -498,10 +498,7 @@ void config2()
       Serial.print("\tY = "); Serial.print(p.y);
       Serial.print("\n");
 
-      p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
-      p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
-
-      if (p.x > 20 && p.x < 100 && p.y > 160 && p.y < 210) {
+      if (p.x > 280 && p.x < 400 && p.y > 185 && p.y < 420) {
         //This is important, because the libraries are sharing pins
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
@@ -512,7 +509,7 @@ void config2()
 
         endConfig();
       }
-      else if (p.x > 150 && p.x < 230 && p.y > 160 && p.y < 210) {
+      else if (p.x > 255 && p.x < 385 && p.y > 610 && p.y < 860) {
         pinMode(XM, OUTPUT);
         pinMode(YP, OUTPUT);
 
@@ -527,7 +524,7 @@ void config2()
         tft.println("would you like to");
         tft.setCursor(40, 40);
         tft.println("set the spray");
-        tft.setCursor(50, 60);
+        tft.setCursor(45, 60);
         tft.println("duration to?");
 
          tft.fillRect(15, 120, 50, 50, BLACK);
@@ -543,17 +540,17 @@ void config2()
         tft.drawRect(175, 120, 50, 50, WHITE);
         tft.setCursor(176, 128);
         tft.print("15");
-        tft.fillRect(15, 200, 50, 50, BLACK);
-        tft.drawRect(15, 200, 50, 50, WHITE);
-        tft.setCursor(16, 208);
+        tft.fillRect(14, 200, 51, 50, BLACK);
+        tft.drawRect(14, 200, 51, 50, WHITE);
+        tft.setCursor(17, 208);
         tft.print("20");
-        tft.fillRect(95, 200, 50, 50, BLACK);
-        tft.drawRect(95, 200, 50, 50, WHITE);
-        tft.setCursor(96, 208);
+        tft.fillRect(94, 200, 51, 50, BLACK);
+        tft.drawRect(94, 200, 51, 50, WHITE);
+        tft.setCursor(97, 208);
         tft.print("25");
-        tft.fillRect(175, 200, 50, 50, BLACK);
-        tft.drawRect(175, 200, 50, 50, WHITE);
-        tft.setCursor(176, 208);
+        tft.fillRect(174, 200, 51, 50, BLACK);
+        tft.drawRect(174, 200, 51, 50, WHITE);
+        tft.setCursor(177, 208);
         tft.print("30");
 
         while (answered4 == false) {
@@ -565,10 +562,7 @@ void config2()
             Serial.print("\tY = "); Serial.print(p.y);
             Serial.print("\n");
 
-            p.x = map(p.x, TS_MAXX, TS_MINX, 0, 320);
-            p.y = map(p.y, TS_MAXY, TS_MINY, 0, 240);
-
-            if (p.x > 230 && p.x < 280 && p.y > 80 && p.y < 130) {
+            if (p.x > 520 && p.x < 640 && p.y > 180 && p.y < 295) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -576,7 +570,7 @@ void config2()
               answered4 = true;
               assignedWait = 5000;
             }
-            else if (p.x > 130 && p.x < 180 && p.y > 80 && p.y < 130) {
+            else if (p.x > 520 && p.x < 640 && p.y > 445 && p.y < 580) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -584,7 +578,7 @@ void config2()
               answered4 = true;
               assignedWait = 10000;
             }
-            else if (p.x > 30 && p.x < 80 && p.y > 80 && p.y < 130) {
+            else if (p.x > 520 && p.x < 640 && p.y > 700 && p.y < 850) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -592,7 +586,7 @@ void config2()
               answered4 = true;
               assignedWait = 15000;
             }
-            else if (p.x > 230 && p.x < 280 && p.y > 180 && p.y < 230) {
+            else if (p.x > 285 && p.x < 430 && p.y > 180 && p.y < 295) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -600,7 +594,7 @@ void config2()
               answered4 = true;
               assignedWait = 20000;
             }
-            else if (p.x > 130 && p.x < 180 && p.y > 180 && p.y < 230) {
+            else if (p.x > 285 && p.x < 430 && p.y > 445 && p.y < 580) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
@@ -608,7 +602,7 @@ void config2()
               answered4 = true;
               assignedWait = 25000;
             }
-            else if (p.x > 30 && p.x < 80 && p.y > 180 && p.y < 230) {
+            else if (p.x > 285 && p.x < 430 && p.y > 700 && p.y < 850) {
               //This is important, because the libraries are sharing pins
               pinMode(XM, OUTPUT);
               pinMode(YP, OUTPUT);
