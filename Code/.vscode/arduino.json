@@ -1,6 +1,0 @@
-{
-    "board": "arduino:avr:mega",
-    "configuration": "cpu=atmega2560",
-    "port": "COM3",
-    "sketch": "AutomaticSprayer\\AutomaticSprayer.ino"
-}
